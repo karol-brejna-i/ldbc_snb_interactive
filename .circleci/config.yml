@@ -148,6 +148,7 @@ jobs:
             cd ..
       - run:
           name: SF10 data set - Create validation parameters with the Neo4j/Cypher
+          no_output_timeout: 60m
           command: |
             cd cypher
             driver/create-validation-parameters.sh
