@@ -133,7 +133,7 @@ jobs:
       - run:
           name: Download SF3 data set
           command: |
-            wget https://surfdrive.surf.nl/files/index.php/s/sZ7TTSzgAxpU2Jq/download --quiet --output-document=sf3.zip
+            wget https://surfdrive.surf.nl/files/index.php/s/oSbiapMLLGod15T/download --quiet --output-document=sf3.zip
             unzip sf3.zip
             # substitution parameters and updateStreams for Neo4j/Cypher
             cp ./sf3/substitution_parameters/* ./cypher/test-data/substitution_parameters/
