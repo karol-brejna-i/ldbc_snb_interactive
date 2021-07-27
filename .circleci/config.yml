@@ -131,41 +131,41 @@ jobs:
             grep 'Validation Result: PASS' validation-log.txt
             cd ..
       - run:
-          name: Download SF10 data set
+          name: Download SF3 data set
           command: |
-            wget https://surfdrive.surf.nl/files/index.php/s/aljHOI0502qJrcF/download --quiet --output-document=sf10.zip
-            unzip sf10.zip
+            wget https://surfdrive.surf.nl/files/index.php/s/sZ7TTSzgAxpU2Jq/download --quiet --output-document=sf3.zip
+            unzip sf3.zip
             # substitution parameters and updateStreams for Neo4j/Cypher
-            cp ./sf10/substitution_parameters/* ./cypher/test-data/substitution_parameters/
-            cp ./sf10/social_network-csv_composite/updateStream* ./cypher/test-data/update_streams/
+            cp ./sf3/substitution_parameters/* ./cypher/test-data/substitution_parameters/
+            cp ./sf3/social_network-csv_composite/updateStream* ./cypher/test-data/update_streams/
       - run:
-          name: SF10 data set - Load Cypher/Neo4j database
+          name: SF3 data set - Load Cypher/Neo4j database
           command: |
             cd cypher
             . scripts/environment-variables-default.sh
-            export NEO4J_VANILLA_CSV_DIR=`pwd`/../sf10/social_network-csv_composite
+            export NEO4J_VANILLA_CSV_DIR=`pwd`/../sf3/social_network-csv_composite
             scripts/load-in-one-step.sh
             cd ..
       - run:
-          name: SF10 data set - Create validation parameters with the Neo4j/Cypher
+          name: SF3 data set - Create validation parameters with the Neo4j/Cypher
           command: |
             cd cypher
             driver/create-validation-parameters.sh
-            mv validation_params.csv validation_params_cypher_sf10.csv
+            mv validation_params.csv validation_params_cypher_sf3.csv
             cd ..
       - run:
-          name: SF10 data set - Load PostgreSQL database
+          name: SF3 data set - Load PostgreSQL database
           command: |
             cd postgres
-            export POSTGRES_CSV_DIR=`pwd`/../sf10/social_network-csv_merge_foreign
+            export POSTGRES_CSV_DIR=`pwd`/../sf3/social_network-csv_merge_foreign
             scripts/start.sh
             scripts/create-db.sh
             scripts/load.sh
             cd ..
       - run:
-          name: SF10 data set - Cross-validate the Postgres project based on the results from Neo4j/Cypher
+          name: SF3 data set - Cross-validate the Postgres project based on the results from Neo4j/Cypher
           command: |
-            mv cypher/validation_params_cypher_sf10.csv postgres/validation_params.csv
+            mv cypher/validation_params_cypher_sf3.csv postgres/validation_params.csv
             cd postgres
             driver/validate.sh | tee validation-log.txt
             grep 'Validation Result: PASS' validation-log.txt
