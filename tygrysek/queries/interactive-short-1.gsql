@@ -1,6 +1,3 @@
-// IS1. Profile of a person
-// IS1. query description is on page 60 https://ldbc.github.io/ldbc_snb_docs/ldbc-snb-specification.pdf (version 0.4.0-SNAPSHOT)
-
 CREATE OR REPLACE DISTRIBUTED QUERY interactiveShort1(VERTEX<Person> personId) SYNTAX v2 {
   SumAccum<INT> @cityId;
   P = { personId };
@@ -18,6 +15,7 @@ CREATE OR REPLACE DISTRIBUTED QUERY interactiveShort1(VERTEX<Person> personId) S
       P.gender AS gender,
       P.creationDate AS creationDate
   ];
+
 }
 
 //RUN QUERY is1(19791209302561)

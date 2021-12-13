@@ -14,3 +14,4 @@ validation_params.csv
 *.report
 *.priv.*
 *.priv
+datagen

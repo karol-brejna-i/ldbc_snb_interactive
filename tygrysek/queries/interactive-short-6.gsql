@@ -1,7 +1,4 @@
-// IS6. Forum of a message
-// IS6. query description is on page 63 https://ldbc.github.io/ldbc_snb_docs/ldbc-snb-specification.pdf
-
-CREATE OR REPLACE DISTRIBUTED QUERY interactiveShort6(STRING messageId) FOR GRAPH ldbc_snb SYNTAX v2 {
+CREATE OR REPLACE DISTRIBUTED QUERY interactiveShort6(STRING messageId) FOR GRAPH LDBC_SNB SYNTAX v2 {
   SumAccum<INT> @forumId;
   SumAccum<STRING> @forumTitle;
   SetAccum<STRING> @@seed;

@@ -1,6 +1,3 @@
-// IS3. Friends of a person
-// IS3. query description is on page 62 https://ldbc.github.io/ldbc_snb_docs/ldbc-snb-specification.pdf
-
 CREATE OR REPLACE DISTRIBUTED QUERY interactiveShort3(VERTEX<Person> personId) SYNTAX v2 {
   SumAccum<INT> @creationDate;
 

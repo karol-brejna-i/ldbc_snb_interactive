@@ -7,7 +7,22 @@ This directory contains the [Tygrysek/GSQL](<<TODO>>) implementation of the Inte
 ## Setup
       TBD
 
-## Generating and loading the data set
+## Obtaining and loading the data set
+In this section, we will describe how to obtain the data set and load it into the database.
+
+The data can be generated using the data generator tool or downloaded from the [LDBC SNB benchmark data repository](
+
+
+https://storage.googleapis.com/ldbc_small/sf1.tar.gz
+gs://ldbc_interactive/composite_projectecd/sf1.tar.zst
+
+https://storage.googleapis.com/ldbc_interactive/composite_projectecd/sf1.tar.zst
+
+https://storage.googleapis.com/ldbc_small/sf1.tar.gz
+
+
+
+gs://ldbc_small/sf100.tar.gz HTTP link. https://storage.googleapis.com/ldbc_small/sf100.tar.gz
 
 ### Generating the data set
 

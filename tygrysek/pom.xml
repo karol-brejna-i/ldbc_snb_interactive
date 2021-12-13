@@ -8,9 +8,9 @@
         <version>0.3.5-SNAPSHOT</version>
     </parent>
 
-    <artifactId>cypher</artifactId>
-    <name>Cypher client</name>
-    <description>Cypher implementation for the LDBC SNB driver</description>
+    <artifactId>tygrysek</artifactId>
+    <name>Tygrysek client</name>
+    <description>Tygrysek implementation for the LDBC SNB driver</description>
 
     <dependencies>
         <dependency>

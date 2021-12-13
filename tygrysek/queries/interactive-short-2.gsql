@@ -1,7 +1,4 @@
-// IS2. Recent messages of a person
-// IS2. query description is on page 61 https://ldbc.github.io/ldbc_snb_docs/ldbc-snb-specification.pdf
-
-CREATE OR REPLACE DISTRIBUTED QUERY interactiveShort2(VERTEX<Person> personId) SYNTAX v2{
+CREATE OR REPLACE DISTRIBUTED QUERY interactiveShort2(VERTEX<Person> personId) SYNTAX v2 {
   TYPEDEF TUPLE<INT messageId, STRING messageContent, DATETIME messageCreationDate, INT originalPostId, INT originalPostAuthorId, STRING originalPostAuthorFirstName, STRING originalPostAuthorLastName> ogPostInfo;
 
   SumAccum<INT> @postId, @authorOgId;

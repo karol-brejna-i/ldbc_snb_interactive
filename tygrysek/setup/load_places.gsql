@@ -1,0 +1,18 @@
+CREATE LOADING JOB load_places {
+
+  DEFINE FILENAME file_place;
+  //DEFINE FILENAME file_Place_isPartOf_Place;
+
+  // load static vertex
+  LOAD file_place
+    TO VERTEX City VALUES ($0, $1, $2)      WHERE $3=="city",
+    TO VERTEX Country VALUES ($0, $1, $2)   WHERE $3=="country",
+    TO VERTEX Continent VALUES ($0, $1, $2) WHERE $3=="continent"
+    USING header="true", separator="|";
+
+  //LOAD file_Place_isPartOf_Place
+  //  TO EDGE IS_PART_OF VALUES ($0 Country, $1 Continent) WHERE to_int($0) < 111,
+  //  TO EDGE IS_PART_OF VALUES ($0 City, $1 Country) WHERE to_int($0) > 110
+  //  USING header="true", separator="|";
+
+}
