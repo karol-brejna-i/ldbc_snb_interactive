@@ -26,3 +26,14 @@ In addition, return a boolean flag knows indicating if the author of the reply (
 the author of the original message (messageAuthor). If author is same as original author, return
 False for knows flag.
 */
+
+
+// IC1. Transitive friends with certain name
+// p. 46
+
+// IC2. Given a start Person (person), find the most recent Messages from all of that Person’s friends (friend  nodes). 
+//      Only consider Messages created before the given maxDate (excluding that day)
+// P. 47
+
+// IC3. Friends and friends of friends that have been to given countries
+// p. 48
