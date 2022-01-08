@@ -872,8 +872,13 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
 
         @Override
-        protected Map<String, String> constructParams(Operation o) {
-            return null;
+        protected Map<String, String> constructParams(Operation operation) {
+            LdbcUpdate8AddFriendship o = (LdbcUpdate8AddFriendship) operation;
+            return ImmutableMap.<String, String>builder()
+                    .put(LdbcUpdate8AddFriendship.PERSON1_ID, Long.toString(o.person1Id()))
+                    .put(LdbcUpdate8AddFriendship.PERSON2_ID, Long.toString(o.person2Id()))
+                    .put(LdbcUpdate8AddFriendship.CREATION_DATE, ResultConverter.dateToEpochString(o.creationDate()))
+                    .build();
         }
     }
 
