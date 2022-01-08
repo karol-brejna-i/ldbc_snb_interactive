@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class TygrysekInteractiveSF1Test extends InteractiveTest {
 
-        String endpoint = "http://172.19.62.46:9000";
+    String endpoint = "http://172.31.56.14:9000";
 //    String endpoint = "http://192.168.0.105:9000";
     String databaseName = "LDBC_SNB";
     String queryDir = "queries";
@@ -79,26 +79,6 @@ public class TygrysekInteractiveSF1Test extends InteractiveTest {
         );
     }
 
-
-    @Test
-    public void testUpdateQuery2() throws Exception {
-    }
-
-    @Test
-    public void testUpdateQuery3() throws Exception {
-    }
-
-    @Test
-    public void testUpdateQuery4() throws Exception {
-    }
-
-    @Test
-    public void testUpdateQuery5() throws Exception {
-    }
-
-    @Test
-    public void testUpdateQuery6() throws Exception {
-    }
 
     @Test
     public void testUpdateQuery7() throws Exception {

@@ -50,6 +50,7 @@ public abstract class TygrysekListOperationHandler<TOperation extends Operation<
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#runQueryGet");
             e.printStackTrace();
+            throw new DbException( e );
         }
         System.out.println(queryResponse);
 

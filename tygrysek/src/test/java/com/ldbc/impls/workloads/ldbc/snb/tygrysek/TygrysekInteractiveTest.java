@@ -13,8 +13,8 @@ import java.util.Map;
 
 public class TygrysekInteractiveTest extends InteractiveTest {
 
-    //    String endpoint = "http://172.21.111.170:9000";
-    String endpoint = "http://192.168.0.105:9000";
+    String endpoint = "http://172.31.56.14:9000";
+//    String endpoint = "http://192.168.0.105:9000";
     String databaseName = "LDBC_SNB";
     String queryDir = "queries";
 

@@ -16,7 +16,6 @@ import com.ldbc.impls.workloads.ldbc.snb.tygrysek.operationhandlers.TygrysekUpda
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +36,12 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         int idx = 0;
         for (Long item : items) {
             builder.put(key + "[" + idx++ + "]", Long.toString((Long) item));
+        }
+    }
+
+    private static void addOrgsParam(ImmutableMap.Builder<String, String> builder, List<LdbcUpdate1AddPerson.Organization> orgs, String key) {
+        if (orgs != null && orgs.size() > 0) {
+            builder.put(key, ResultConverter.orgsToString(orgs));
         }
     }
 
@@ -380,7 +385,7 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
             VertexResult vertexResult = new VertexResult(record);
             Long personId = vertexResult.getLong("personId");
             String personFirstName = vertexResult.getString("personFirstName");
-            String personLastName =  vertexResult.getString("personLastName");
+            String personLastName = vertexResult.getString("personLastName");
             Integer replyCount = vertexResult.getInt("replyCount");
             Iterable<String> tagNames = vertexResult.getStringList("tagNames");
 
@@ -394,6 +399,8 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
             return new LdbcQuery12Result(personId, personFirstName, personLastName, tagNames, replyCount);
         }
     }
+
+    // Interactive short reads
 
     public static class InteractiveQuery13 extends TygrysekSingletonOperationHandler<LdbcQuery13, LdbcQuery13Result> {
         @Override
@@ -418,8 +425,6 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
 
     }
-
-    // Interactive short reads
 
     public static class InteractiveQuery14 extends TygrysekListOperationHandler<LdbcQuery14, LdbcQuery14Result> {
 
@@ -596,6 +601,8 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
 
     }
 
+    // Interactive inserts
+
     public static class ShortQuery6MessageForum extends TygrysekSingletonOperationHandler<LdbcShortQuery6MessageForum, LdbcShortQuery6MessageForumResult> {
 
         @Override
@@ -624,8 +631,6 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
             return new LdbcShortQuery6MessageForumResult(forumId, forumTitle, moderatorId, moderatorFirstName, moderatorLastName);
         }
     }
-
-    // Interactive inserts
 
     public static class ShortQuery7MessageReplies extends TygrysekListOperationHandler<LdbcShortQuery7MessageReplies, LdbcShortQuery7MessageRepliesResult> {
 
@@ -675,20 +680,6 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         protected Map<String, String> constructParams(Operation operation) {
             LdbcUpdate1AddPerson o = (LdbcUpdate1AddPerson) operation;
 
-//          PERSON_ID = "personId";
-//          PERSON_FIRST_NAME = "personFirstName";
-//          PERSON_LAST_NAME = "personLastName";
-//          GENDER = "gender";
-//          BIRTHDAY = "birthday";
-//          CREATION_DATE = "creationDate";
-//            public static final String LOCATION_IP = "locationIP";
-//            public static final String BROWSER_USED = "browserUsed";
-//            public static final String CITY_ID = "cityId";
-//            public static final String LANGUAGES = "languages";
-//            public static final String EMAILS = "emails";
-//            public static final String TAG_IDS = "tagIds";
-//            public static final String STUDY_AT = "studyAt";
-//            public static final String WORK_AT = "workAt";
             ImmutableMap.Builder<String, String> builder = ImmutableMap.<String, String>builder()
                     .put(LdbcUpdate1AddPerson.PERSON_ID, Long.toString(o.personId()))
                     .put(LdbcUpdate1AddPerson.PERSON_FIRST_NAME, o.personFirstName())
@@ -713,16 +704,10 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
     }
 
-    private static void addOrgsParam(ImmutableMap.Builder<String, String> builder, List<LdbcUpdate1AddPerson.Organization> orgs, String key) {
-        if (orgs != null && orgs.size() > 0) {
-            builder.put(key, ResultConverter.orgsToString(orgs));
-        }
-    }
-
     public static class Update2AddPostLike extends TygrysekUpdateOperationHandler<LdbcUpdate2AddPostLike> {
         @Override
         public String getQueryName() {
-            return "interactiveInsert1";
+            return "interactiveInsert2";
         }
 
         @Override
@@ -731,15 +716,21 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
 
         @Override
-        protected Map<String, String> constructParams(Operation o) {
-            return null;
+        protected Map<String, String> constructParams(Operation operation) {
+            LdbcUpdate2AddPostLike o = (LdbcUpdate2AddPostLike) operation;
+
+            return ImmutableMap.<String, String>builder()
+                    .put(LdbcUpdate2AddPostLike.PERSON_ID, Long.toString(o.personId()))
+                    .put(LdbcUpdate2AddPostLike.POST_ID, Long.toString(o.postId()))
+                    .put(LdbcUpdate2AddPostLike.CREATION_DATE, ResultConverter.dateToEpochString(o.creationDate()))
+                    .build();
         }
     }
 
     public static class Update3AddCommentLike extends TygrysekUpdateOperationHandler<LdbcUpdate3AddCommentLike> {
         @Override
         public String getQueryName() {
-            return "interactiveInsert1";
+            return "interactiveInsert3";
         }
 
         @Override
@@ -748,15 +739,20 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
 
         @Override
-        protected Map<String, String> constructParams(Operation o) {
-            return null;
+        protected Map<String, String> constructParams(Operation operation) {
+            LdbcUpdate3AddCommentLike o = (LdbcUpdate3AddCommentLike) operation;
+            return ImmutableMap.<String, String>builder()
+                    .put(LdbcUpdate3AddCommentLike.PERSON_ID, Long.toString(o.personId()))
+                    .put(LdbcUpdate3AddCommentLike.COMMENT_ID, Long.toString(o.commentId()))
+                    .put(LdbcUpdate3AddCommentLike.CREATION_DATE, ResultConverter.dateToEpochString(o.creationDate()))
+                    .build();
         }
     }
 
     public static class Update4AddForum extends TygrysekUpdateOperationHandler<LdbcUpdate4AddForum> {
         @Override
         public String getQueryName() {
-            return "interactiveInsert1";
+            return "interactiveInsert4";
         }
 
         @Override
@@ -765,15 +761,22 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
 
         @Override
-        protected Map<String, String> constructParams(Operation o) {
-            return null;
+        protected Map<String, String> constructParams(Operation operation) {
+            LdbcUpdate4AddForum o = (LdbcUpdate4AddForum) operation;
+            ImmutableMap.Builder<String, String> builder = ImmutableMap.<String, String>builder()
+                    .put(LdbcUpdate4AddForum.FORUM_ID, Long.toString(o.forumId()))
+                    .put(LdbcUpdate4AddForum.FORUM_TITLE, o.forumTitle())
+                    .put(LdbcUpdate4AddForum.CREATION_DATE, ResultConverter.dateToEpochString(o.creationDate()))
+                    .put(LdbcUpdate4AddForum.MODERATOR_PERSON_ID, Long.toString(o.moderatorPersonId()));
+            addLongArrayParam(o.tagIds(), builder, LdbcUpdate4AddForum.TAG_IDS);
+            return builder.build();
         }
     }
 
     public static class Update5AddForumMembership extends TygrysekUpdateOperationHandler<LdbcUpdate5AddForumMembership> {
         @Override
         public String getQueryName() {
-            return "interactiveInsert1";
+            return "interactiveInsert5";
         }
 
         @Override
@@ -782,15 +785,20 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
 
         @Override
-        protected Map<String, String> constructParams(Operation o) {
-            return null;
+        protected Map<String, String> constructParams(Operation operation) {
+            LdbcUpdate5AddForumMembership o = (LdbcUpdate5AddForumMembership) operation;
+            return ImmutableMap.<String, String>builder()
+                    .put(LdbcUpdate5AddForumMembership.FORUM_ID, Long.toString(o.forumId()))
+                    .put(LdbcUpdate5AddForumMembership.PERSON_ID, Long.toString(o.personId()))
+                    .put(LdbcUpdate5AddForumMembership.JOIN_DATE, ResultConverter.dateToEpochString(o.joinDate()))
+                    .build();
         }
     }
 
     public static class Update6AddPost extends TygrysekUpdateOperationHandler<LdbcUpdate6AddPost> {
         @Override
         public String getQueryName() {
-            return "interactiveInsert1";
+            return "interactiveInsert6";
         }
 
         @Override
@@ -799,8 +807,24 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
 
         @Override
-        protected Map<String, String> constructParams(Operation o) {
-            return null;
+        protected Map<String, String> constructParams(Operation operation) {
+            LdbcUpdate6AddPost o = (LdbcUpdate6AddPost) operation;
+
+            ImmutableMap.Builder<String, String> builder = ImmutableMap.<String, String>builder()
+                    .put(LdbcUpdate6AddPost.POST_ID, Long.toString(o.forumId()))
+                    .put(LdbcUpdate6AddPost.IMAGE_FILE, o.imageFile())
+                    .put(LdbcUpdate6AddPost.CREATION_DATE, ResultConverter.dateToEpochString(o.creationDate()))
+                    .put(LdbcUpdate6AddPost.LOCATION_IP, o.locationIp())
+                    .put(LdbcUpdate6AddPost.BROWSER_USED, o.browserUsed())
+                    .put(LdbcUpdate6AddPost.LANGUAGE, o.language())
+                    .put(LdbcUpdate6AddPost.CONTENT, o.content())
+                    .put(LdbcUpdate6AddPost.LENGTH, Integer.toString(o.length()))
+                    .put(LdbcUpdate6AddPost.AUTHOR_PERSON_ID, Long.toString(o.authorPersonId()))
+                    .put(LdbcUpdate6AddPost.FORUM_ID, Long.toString(o.forumId()))
+                    .put(LdbcUpdate6AddPost.COUNTRY_ID, Long.toString(o.countryId()));
+
+            addLongArrayParam(o.tagIds(), builder, LdbcUpdate6AddPost.TAG_IDS);
+            return builder.build();
         }
     }
 
