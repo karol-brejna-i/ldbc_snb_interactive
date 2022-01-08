@@ -12,18 +12,6 @@
         VERTEX<Country> countryId,
         SET<VERTEX<Tag>> tagIds) {
 
-        print     postId,
-                   imageFile,
-                   creationDate,
-                   locationIP,
-                   browserUsed,
-                   language,
-                   content,
-                  length,
-                  authorPersonId,
-                  forumId,
-                  countryId,
-                  tagIds;
 
       INSERT INTO Post VALUES(postId, imageFile, creationDate, locationIP, browserUsed, language, content, length);
       INSERT INTO HAS_CREATOR VALUES(postId Post, authorPersonId Person, creationDate);

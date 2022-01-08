@@ -831,7 +831,7 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
     public static class Update7AddComment extends TygrysekUpdateOperationHandler<LdbcUpdate7AddComment> {
         @Override
         public String getQueryName() {
-            return "interactiveInsert1";
+            return "interactiveInsert7";
         }
 
         @Override
@@ -840,15 +840,30 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
 
         @Override
-        protected Map<String, String> constructParams(Operation o) {
-            return null;
+        protected Map<String, String> constructParams(Operation operation) {
+            LdbcUpdate7AddComment o = (LdbcUpdate7AddComment) operation;
+
+            ImmutableMap.Builder<String, String> builder = ImmutableMap.<String, String>builder()
+                    .put(LdbcUpdate7AddComment.COMMENT_ID, Long.toString(o.commentId()))
+                    .put(LdbcUpdate7AddComment.CREATION_DATE, ResultConverter.dateToEpochString(o.creationDate()))
+                    .put(LdbcUpdate7AddComment.LOCATION_IP, o.locationIp())
+                    .put(LdbcUpdate7AddComment.BROWSER_USED, o.browserUsed())
+                    .put(LdbcUpdate7AddComment.CONTENT, o.content())
+                    .put(LdbcUpdate7AddComment.LENGTH, Integer.toString(o.length()))
+                    .put(LdbcUpdate7AddComment.AUTHOR_PERSON_ID, Long.toString(o.authorPersonId()))
+                    .put(LdbcUpdate7AddComment.COUNTRY_ID, Long.toString(o.countryId()))
+                    .put(LdbcUpdate7AddComment.REPLY_TO_POST_ID, Long.toString(o.replyToPostId()))
+                    .put(LdbcUpdate7AddComment.REPLY_TO_COMMENT_ID, Long.toString(o.replyToCommentId()));
+
+            addLongArrayParam(o.tagIds(), builder, LdbcUpdate6AddPost.TAG_IDS);
+            return builder.build();
         }
     }
 
     public static class Update8AddFriendship extends TygrysekUpdateOperationHandler<LdbcUpdate8AddFriendship> {
         @Override
         public String getQueryName() {
-            return "interactiveInsert1";
+            return "interactiveInsert8";
         }
 
         @Override

@@ -79,15 +79,6 @@ public class TygrysekInteractiveSF1Test extends InteractiveTest {
         );
     }
 
-
-    @Test
-    public void testUpdateQuery7() throws Exception {
-    }
-
-    @Test
-    public void testUpdateQuery8() throws Exception {
-    }
-
     @Test
     public void testShortQuery6() throws Exception {
         run(db, new LdbcShortQuery6MessageForum(2061584476422L));
