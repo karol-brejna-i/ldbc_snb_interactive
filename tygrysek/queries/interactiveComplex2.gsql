@@ -1,4 +1,4 @@
-CREATE OR REPLACE DISTRIBUTED QUERY interactiveComplex2(VERTEX<Person> personId, DATETIME date) SYNTAX v2 {
+CREATE OR REPLACE DISTRIBUTED QUERY interactiveComplex2(VERTEX<Person> personId, DATETIME maxDate) SYNTAX v2 {
     TYPEDEF TUPLE<INT personId, STRING personFirstName, STRING personLastName, INT messageId, STRING messageContent, DATETIME messageCreationDate> msg;
     HeapAccum<msg>(20, messageCreationDate DESC, messageId ASC) @@result;
 
@@ -6,7 +6,7 @@ CREATE OR REPLACE DISTRIBUTED QUERY interactiveComplex2(VERTEX<Person> personId,
     T =
         SELECT t
             FROM S:s -(KNOWS) -Person:p - (<HAS_CREATOR) - (Comment|Post):t
-        WHERE t.creationDate < date
+        WHERE t.creationDate < maxDate
             PER(p,t)
             ACCUM
                 IF t.type == "Comment" OR t.content != "" THEN
@@ -14,5 +14,5 @@ CREATE OR REPLACE DISTRIBUTED QUERY interactiveComplex2(VERTEX<Person> personId,
                 ELSE
                     @@result += msg(p.id, p.firstName, p.lastName, t.id, t.imageFile, t.creationDate)
             END;
-    PRINT @@result;
+    PRINT @@result as result;
 }

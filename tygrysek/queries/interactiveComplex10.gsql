@@ -46,6 +46,6 @@ CREATE OR REPLACE DISTRIBUTED QUERY interactiveComplex10(vertex<Person> personId
   F2 =
     SELECT v FROM F2:v
     ACCUM @@result += friendInfo(v.id, v.firstName, v.lastName, v.@commonInterestScore, v.gender, v.@city);
-  PRINT @@result;    
+  PRINT @@result as result;
 }
 

@@ -1,11 +1,11 @@
-CREATE OR REPLACE DISTRIBUTED QUERY interactiveComplex4(VERTEX<Person> personId, DATETIME startDate, INT duration) SYNTAX v2 {
+CREATE OR REPLACE DISTRIBUTED QUERY interactiveComplex4(VERTEX<Person> personId, DATETIME startDate, INT durationDays) SYNTAX v2 {
   TYPEDEF TUPLE<STRING tagName, INT postCount> topic;
   SumAccum<int> @postCount;
   SetAccum<VERTEX<Tag>> @@tagsFav, @@tagsExc;
   HeapAccum<topic>(10, postCount DESC, tagName ASC) @@result;
 
   DATETIME endDate;
-  endDate = DATETIME_add(startDate, INTERVAL duration DAY);
+  endDate = DATETIME_add(startDate, INTERVAL durationDays DAY);
 
   S = { personId };
   // find tags of posts created by the Person's friends in the given timeframe
@@ -30,5 +30,5 @@ CREATE OR REPLACE DISTRIBUTED QUERY interactiveComplex4(VERTEX<Person> personId,
   vTag =
     SELECT t FROM vTag:t
     ACCUM @@result += topic(t.name, t.@postCount);
-  PRINT @@result;
+  PRINT @@result as result;
 }

@@ -96,7 +96,7 @@ CREATE OR REPLACE DISTRIBUTED QUERY interactiveComplex14(VERTEX<Person> person1I
     jsonStr = jsonStr + bigint_to_string(path.get(path.size()-1).id) + "]";
     @@result += RESULT(parse_json_array(jsonStr), @@weight);
   END; //FOREACH path IN @@shortestPaths DO
-  PRINT @@result;
+  PRINT @@result as result;
 }
 
 

@@ -2,33 +2,42 @@ package com.ldbc.impls.workloads.ldbc.snb.tygrysek;
 
 import com.ldbc.driver.DbException;
 import com.ldbc.impls.workloads.ldbc.snb.BaseDbConnectionState;
-import org.neo4j.driver.AuthTokens;
-import org.neo4j.driver.Driver;
-import org.neo4j.driver.GraphDatabase;
-import org.neo4j.driver.Session;
+import io.github.karol_brejna_i.tigergraph.restppclient.api.QueryApi;
+import io.github.karol_brejna_i.tigergraph.restppclient.invoker.ApiClient;
+import io.github.karol_brejna_i.tigergraph.restppclient.invoker.Configuration;
+
 
 import java.io.IOException;
 import java.util.Map;
 
 public class TygrysekDbConnectionState extends BaseDbConnectionState<TygrysekQueryStore> {
 
-    protected final Driver driver;
+    protected final String endpoint;
+    private final QueryApi apiInstance;
+    private final String graphName;
 
     public TygrysekDbConnectionState(Map<String, String> properties, TygrysekQueryStore store) {
         super(properties, store);
-        String endPoint = properties.get("endpoint");
-        String user = properties.get("user");
-        String password = properties.get("password");
-        driver = GraphDatabase.driver(endPoint, AuthTokens.basic(user, password));
-    }
+        this.endpoint = properties.get("endpoint");
+        this.graphName = properties.get("name");
 
-    public Session getSession() throws DbException {
-        return driver.session();
+        ApiClient defaultApiClient = Configuration.getDefaultApiClient();
+        defaultApiClient.setBasePath(this.endpoint);
+        Configuration.setDefaultApiClient(defaultApiClient);
+
+        this.apiInstance = new QueryApi();
     }
 
     @Override
     public void close() throws IOException {
-        driver.close();
+        // no-op
     }
 
+    public QueryApi getApiInstance() {
+        return apiInstance;
+    }
+
+    public String getGraphName() {
+        return graphName;
+    }
 }

@@ -47,7 +47,7 @@ CREATE OR REPLACE DISTRIBUTED QUERY interactiveComplex13(VERTEX<Person> person1I
     @@result += 0;
   END;
 
-  PRINT @@result;
+  PRINT @@result as shortestPathLength;
 }
 
 

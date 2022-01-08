@@ -9,7 +9,7 @@ CREATE OR REPLACE DISTRIBUTED QUERY interactiveShort3(VERTEX<Person> personId) S
       ORDER BY t.@creationDate DESC, t.id ASC;
 
   PRINT P[
-      P.id AS personId, P.firstName AS firstName, P.lastName AS lastName, epoch_to_datetime(P.@creationDate) AS friendshipCreationDate];
+      P.id AS personId, P.firstName AS firstName, P.lastName AS lastName, epoch_to_datetime(P.@creationDate) AS friendshipCreationDate] as result;
 }
 
 //RUN QUERY is2(19791209302561)

@@ -1,43 +1,52 @@
-CREATE QUERY interactiveComplex3(VERTEX<Person> personId, STRING country1, STRING country2, DATETIME startDate, INT duration) SYNTAX v2 {
+CREATE OR REPLACE DISTRIBUTED QUERY interactiveComplex3(VERTEX<Person> personId, STRING countryXName, STRING countryYName, DATETIME startDate, INT durationDays) SYNTAX v2 {
+   TYPEDEF TUPLE<INT personId, STRING personFirstName, STRING personLastName, INT xCount, INT yCount, INT xyCount> msgStats;
 
-    TYPEDEF TUPLE<INT personId, STRING personFirstName, STRING personLastName, INT xCount, INT yCount, INT xyCount> msgStats;
     HeapAccum<msgStats>(20, xCount DESC, personId ASC) @@result;
-    SumAccum<int> @xCount, @yCount;
-    OrAccum<BOOL> @selected, @selected2;
     datetime endDate;
-    endDate = datetime_add(startDate, INTERVAL duration DAY);
+    endDate = datetime_add(startDate, INTERVAL durationDays DAY);
 
-    S = { personId };
+    vPerson = { personId };
+
+    vFriends =
+        SELECT p
+          FROM vPerson:s -(KNOWS*1..2)- Person:p
+         WHERE p != personId;
+    //PRINT vFriends.size();
+
+    SumAccum<STRING> @country;
+    vFromOtherCountries =
+        SELECT p
+          FROM Country:cp -(<IS_PART_OF.<IS_LOCATED_IN)- vFriends:p
+         WHERE cp.name != countryXName AND cp.name != countryYName //;
+               accum p.@country = cp.name;
+
+    //PRINT vFromOtherCountries.size(), vFromOtherCountries;
+
+    MapAccum<INT, SumAccum<INT>> @counter;
+    vCountedMessages =
+        SELECT p
+          FROM Country:cm -(<IS_LOCATED_IN)- (Post|Comment):m -(HAS_CREATOR>)- vFromOtherCountries:p
+         WHERE cm.name in (countryXName, countryYName) AND m.creationDate >= startDate AND m.creationDate < endDate
+  	           ACCUM
+			            CASE WHEN cm.name == countryXName THEN p.@counter += (1 -> 1) end,
+			            CASE WHEN cm.name == countryYName THEN p.@counter += (2 -> 1) end;
+    //PRINT countedMessages.size(), countedMessages;
+
+
+    //MapAccum<STRING, SumAccum<INT>> @counter2;
+    //countedMessages =
+    //    SELECT p
+    //        FROM Country:cm -(<IS_LOCATED_IN)- (Post|Comment):m -(HAS_CREATOR>)- vFromOtherCountries:p
+    //    WHERE /*cm.name in (countryXName, countryYName) AND */m.creationDate >= startDate AND m.creationDate < endDate
+  	//	      ACCUM p.@counter2 += (cm.name -> 1);
+    //PRINT countedMessages.size(), countedMessages;
+
     P =
         SELECT p
-            FROM S:s -(KNOWS*1..2)- Person:p
-        WHERE p != personId
-            ACCUM p.@selected += true;
+          FROM vCountedMessages:p
+         WHERE p.@counter.get(1) != 0 and p.@counter.get(2) != 0
+         ACCUM @@result += msgStats(p.id, p.firstName, p.lastName, p.@counter.get(1), p.@counter.get(2), (p.@counter.get(1) + p.@counter.get(2)))
+         LIMIT 20;
 
-    P =
-        SELECT p
-            FROM Country:cp -(<IS_PART_OF.<IS_LOCATED_IN)- Person:p
-        WHERE cp.name != country1 AND cp.name != country2 AND p.@selected
-            ACCUM p.@selected2 += true;
-
-    P1 =
-        SELECT p
-            FROM Country:cm -(<IS_LOCATED_IN)- (Post|Comment):m -(HAS_CREATOR>)- Person:p
-        WHERE cm.name == country1 AND m.creationDate >= startDate AND m.creationDate < endDate AND p.@selected2
-            PER(m,p)
-            ACCUM p.@xCount += 1;
-
-    P2 =
-        SELECT p
-            FROM Country:cm -(<IS_LOCATED_IN)- (Post|Comment):m -(HAS_CREATOR>)- Person:p
-        WHERE cm.name == country2 AND m.creationDate >= startDate AND m.creationDate < endDate AND p.@selected2
-            PER(m,p)
-            ACCUM p.@yCount += 1;
-
-    P = P1 INTERSECT P2;
-    P =
-        SELECT p FROM P:p
-        ACCUM @@result += msgStats(p.id, p.firstName, p.lastName, p.@xCount, p.@yCount, (p.@xCount + p.@yCount));
-
-    PRINT @@result;
+    PRINT @@result AS result;
 }

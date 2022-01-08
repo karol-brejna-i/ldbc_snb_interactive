@@ -16,7 +16,7 @@ CREATE OR REPLACE DISTRIBUTED QUERY interactiveShort5(STRING messageId) SYNTAX v
   PRINT P[
       P.id AS personId,
       P.firstName AS firstName,
-      P.lastName AS lastName];
+      P.lastName AS lastName] as result;
 }
 
 //RUN QUERY is5(1168231255724) -- comment

@@ -10,5 +10,5 @@ CREATE OR REPLACE DISTRIBUTED QUERY interactiveComplex8(VERTEX<Person> personId)
     PER(m,p)
     ACCUM @@result += replier(p.id, p.firstName, p.lastName, m.creationDate, m.id, m.content);
 
-  PRINT @@result;
+  PRINT @@result as result;
 }

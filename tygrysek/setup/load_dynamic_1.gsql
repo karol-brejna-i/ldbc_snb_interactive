@@ -120,7 +120,7 @@ CREATE LOADING JOB load_dynamic_1 {
     // TODO XXX WAS:
     //    LOAD file_Person_likes_Comment TO EDGE LIKES VALUES ($1, $2 Comment, $0) USING SEPARATOR="|", HEADER="true", EOL="\n";
     LOAD person_likes_comment
-        TO EDGE LIKES VALUES ($0 Person, $1 Comment, $3)
+        TO EDGE LIKES VALUES ($0 Person, $1 Comment, $2)
     USING SEPARATOR="|", HEADER="true", EOL="\n";
 
     // datagen: Person.id|Organisation.id|classYear; 933|2643|2011
@@ -191,6 +191,7 @@ CREATE LOADING JOB load_dynamic_1 {
     // datagen: Comment.id|Comment.id; 2061584302091|2061584302089
     // TODO XXX WAS:
     //    LOAD file_Comment_replyOf_Comment TO EDGE REPLY_OF VALUES ($1, $2 Comment, $0) USING SEPARATOR="|", HEADER="true", EOL="\n";
+    // TODO XXX: the schema has additional attribute for the edge (creationDate DATETIME); clean this up
     LOAD comment_replyOf_comment
         TO EDGE REPLY_OF VALUES ($0 Comment, $1 Comment, _)
     USING SEPARATOR="|", HEADER="true", EOL="\n";
@@ -198,8 +199,9 @@ CREATE LOADING JOB load_dynamic_1 {
     // datagen: Comment.id|Post.id;  1236950581249|1236950581248
     // TODO XXX WAS:
     //    LOAD file_Comment_replyOf_Post\TO EDGE REPLY_OF VALUES ($1, $2 Post, $0) USING SEPARATOR="|", HEADER="true", EOL="\n";
+    // TODO XXX: the schema has additional attribute for the edge (creationDate DATETIME); clean this up
     LOAD comment_replyOf_post
-        TO EDGE REPLY_OF VALUES ($0 Comment,$1 Post, $2 _)
+        TO EDGE REPLY_OF VALUES ($0 Comment,$1 Post, _)
     USING SEPARATOR="|", HEADER="true", EOL="\n";
 
 }

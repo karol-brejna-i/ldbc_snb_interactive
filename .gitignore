@@ -15,3 +15,5 @@ results/
 sf1/
 sf1.zip
 tcr.log
+*.priv
+*.priv.*
