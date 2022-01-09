@@ -2,7 +2,7 @@ package com.ldbc.impls.workloads.ldbc.snb.tygrysek;
 
 import com.ldbc.driver.workloads.ldbc.snb.interactive.*;
 import com.ldbc.impls.workloads.ldbc.snb.interactive.InteractiveTest;
-import com.ldbc.impls.workloads.ldbc.snb.tygrysek.interactive.TygrysekInteractiveDb;
+import com.ldbc.impls.workloads.ldbc.snb.tygrysek.interactive.TigerGraphInteractiveDb;
 import org.junit.Test;
 
 import java.text.DateFormat;
@@ -11,15 +11,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TygrysekInteractiveTest extends InteractiveTest {
+public class TigerGraphInteractiveTest extends InteractiveTest {
 
     String endpoint = "http://172.31.56.14:9000";
 //    String endpoint = "http://192.168.0.105:9000";
     String databaseName = "LDBC_SNB";
     String queryDir = "queries";
 
-    public TygrysekInteractiveTest() {
-        super(new TygrysekInteractiveDb());
+    public TigerGraphInteractiveTest() {
+        super(new TigerGraphInteractiveDb());
     }
 
     public Map<String, String> getProperties() {

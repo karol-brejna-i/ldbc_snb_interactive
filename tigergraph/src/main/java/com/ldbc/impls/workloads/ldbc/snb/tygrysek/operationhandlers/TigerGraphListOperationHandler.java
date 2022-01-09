@@ -5,7 +5,7 @@ import com.ldbc.driver.DbException;
 import com.ldbc.driver.Operation;
 import com.ldbc.driver.ResultReporter;
 import com.ldbc.impls.workloads.ldbc.snb.operationhandlers.ListOperationHandler;
-import com.ldbc.impls.workloads.ldbc.snb.tygrysek.TygrysekDbConnectionState;
+import com.ldbc.impls.workloads.ldbc.snb.tygrysek.TigerGraphDbConnectionState;
 import io.github.karol_brejna_i.tigergraph.restppclient.api.QueryApi;
 import io.github.karol_brejna_i.tigergraph.restppclient.invoker.ApiException;
 import io.github.karol_brejna_i.tigergraph.restppclient.model.QueryResponse;
@@ -16,11 +16,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public abstract class TygrysekListOperationHandler<TOperation extends Operation<List<TOperationResult>>, TOperationResult>
-        implements ListOperationHandler<TOperationResult, TOperation, TygrysekDbConnectionState> {
+public abstract class TigerGraphListOperationHandler<TOperation extends Operation<List<TOperationResult>>, TOperationResult>
+        implements ListOperationHandler<TOperationResult, TOperation, TigerGraphDbConnectionState> {
 
     @Override
-    public String getQueryString(TygrysekDbConnectionState state, TOperation operation) {
+    public String getQueryString(TigerGraphDbConnectionState state, TOperation operation) {
         return null;
     }
 
@@ -32,7 +32,7 @@ public abstract class TygrysekListOperationHandler<TOperation extends Operation<
 
 
     @Override
-    public void executeOperation(TOperation operation, TygrysekDbConnectionState state,
+    public void executeOperation(TOperation operation, TigerGraphDbConnectionState state,
                                  ResultReporter resultReporter) throws DbException {
         System.out.println("-------Executing list operation: " + operation);
 

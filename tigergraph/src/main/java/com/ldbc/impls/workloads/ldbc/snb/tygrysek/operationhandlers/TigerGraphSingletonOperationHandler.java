@@ -5,7 +5,7 @@ import com.ldbc.driver.DbException;
 import com.ldbc.driver.Operation;
 import com.ldbc.driver.ResultReporter;
 import com.ldbc.impls.workloads.ldbc.snb.operationhandlers.SingletonOperationHandler;
-import com.ldbc.impls.workloads.ldbc.snb.tygrysek.TygrysekDbConnectionState;
+import com.ldbc.impls.workloads.ldbc.snb.tygrysek.TigerGraphDbConnectionState;
 import io.github.karol_brejna_i.tigergraph.restppclient.api.QueryApi;
 import io.github.karol_brejna_i.tigergraph.restppclient.invoker.ApiException;
 import io.github.karol_brejna_i.tigergraph.restppclient.model.QueryResponse;
@@ -14,11 +14,11 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
-public abstract class TygrysekSingletonOperationHandler<TOperation extends Operation<TOperationResult>, TOperationResult>
-        implements SingletonOperationHandler<TOperationResult, TOperation, TygrysekDbConnectionState> {
+public abstract class TigerGraphSingletonOperationHandler<TOperation extends Operation<TOperationResult>, TOperationResult>
+        implements SingletonOperationHandler<TOperationResult, TOperation, TigerGraphDbConnectionState> {
 
     @Override
-    public String getQueryString(TygrysekDbConnectionState state, TOperation operation) {
+    public String getQueryString(TigerGraphDbConnectionState state, TOperation operation) {
         return null;
     }
 
@@ -30,7 +30,7 @@ public abstract class TygrysekSingletonOperationHandler<TOperation extends Opera
 
 
     @Override
-    public void executeOperation(TOperation operation, TygrysekDbConnectionState state, ResultReporter resultReporter) throws DbException {
+    public void executeOperation(TOperation operation, TigerGraphDbConnectionState state, ResultReporter resultReporter) throws DbException {
         System.out.println("-------Executing singleton operation: " + operation);
 
         final String queryName = getQueryName();

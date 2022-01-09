@@ -6,22 +6,22 @@ import com.ldbc.driver.workloads.ldbc.snb.interactive.LdbcShortQuery6MessageForu
 import com.ldbc.driver.workloads.ldbc.snb.interactive.LdbcShortQuery7MessageReplies;
 import com.ldbc.driver.workloads.ldbc.snb.interactive.LdbcUpdate1AddPerson;
 import com.ldbc.impls.workloads.ldbc.snb.interactive.InteractiveTest;
-import com.ldbc.impls.workloads.ldbc.snb.tygrysek.interactive.TygrysekInteractiveDb;
+import com.ldbc.impls.workloads.ldbc.snb.tygrysek.interactive.TigerGraphInteractiveDb;
 import org.junit.Test;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TygrysekInteractiveSF1Test extends InteractiveTest {
+public class TigerGraphInteractiveSF1Test extends InteractiveTest {
 
     String endpoint = "http://172.20.66.147:9000";
 //    String endpoint = "http://192.168.0.105:9000";
     String databaseName = "LDBC_SNB";
     String queryDir = "queries";
 
-    public TygrysekInteractiveSF1Test() {
-        super(new TygrysekInteractiveDb());
+    public TigerGraphInteractiveSF1Test() {
+        super(new TigerGraphInteractiveDb());
     }
 
     public Map<String, String> getProperties() {

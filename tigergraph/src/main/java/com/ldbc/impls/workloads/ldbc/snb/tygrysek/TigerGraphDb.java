@@ -9,9 +9,9 @@ import com.ldbc.driver.workloads.ldbc.snb.interactive.*;
 import com.ldbc.impls.workloads.ldbc.snb.db.BaseDb;
 import com.ldbc.impls.workloads.ldbc.snb.tygrysek.connector.ResultConverter;
 import com.ldbc.impls.workloads.ldbc.snb.tygrysek.connector.VertexResult;
-import com.ldbc.impls.workloads.ldbc.snb.tygrysek.operationhandlers.TygrysekListOperationHandler;
-import com.ldbc.impls.workloads.ldbc.snb.tygrysek.operationhandlers.TygrysekSingletonOperationHandler;
-import com.ldbc.impls.workloads.ldbc.snb.tygrysek.operationhandlers.TygrysekUpdateOperationHandler;
+import com.ldbc.impls.workloads.ldbc.snb.tygrysek.operationhandlers.TigerGraphListOperationHandler;
+import com.ldbc.impls.workloads.ldbc.snb.tygrysek.operationhandlers.TigerGraphSingletonOperationHandler;
+import com.ldbc.impls.workloads.ldbc.snb.tygrysek.operationhandlers.TigerGraphUpdateOperationHandler;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
+public abstract class TigerGraphDb extends BaseDb<TigerGraphQueryStore> {
     static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     private static void addStringArrayParam(List<String> items, ImmutableMap.Builder<String, String> builder, String key) {
@@ -47,11 +47,11 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
 
     @Override
     protected void onInit(Map<String, String> properties, LoggingService loggingService) throws DbException {
-        dcs = new TygrysekDbConnectionState(properties, new TygrysekQueryStore(properties.get("queryDir")));
+        dcs = new TigerGraphDbConnectionState(properties, new TigerGraphQueryStore(properties.get("queryDir")));
     }
 
     // Interactive complex reads
-    public static class InteractiveQuery1 extends TygrysekListOperationHandler<LdbcQuery1, LdbcQuery1Result> {
+    public static class InteractiveQuery1 extends TigerGraphListOperationHandler<LdbcQuery1, LdbcQuery1Result> {
 
         @Override
         public String getQueryName() {
@@ -95,7 +95,7 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
     }
 
-    public static class InteractiveQuery2 extends TygrysekListOperationHandler<LdbcQuery2, LdbcQuery2Result> {
+    public static class InteractiveQuery2 extends TigerGraphListOperationHandler<LdbcQuery2, LdbcQuery2Result> {
 
         @Override
         public String getQueryName() {
@@ -126,7 +126,7 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
     }
 
-    public static class InteractiveQuery3 extends TygrysekListOperationHandler<LdbcQuery3, LdbcQuery3Result> {
+    public static class InteractiveQuery3 extends TigerGraphListOperationHandler<LdbcQuery3, LdbcQuery3Result> {
 
         @Override
         public String getQueryName() {
@@ -154,7 +154,7 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
     }
 
-    public static class InteractiveQuery4 extends TygrysekListOperationHandler<LdbcQuery4, LdbcQuery4Result> {
+    public static class InteractiveQuery4 extends TigerGraphListOperationHandler<LdbcQuery4, LdbcQuery4Result> {
 
         @Override
         public String getQueryName() {
@@ -178,7 +178,7 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
 
     }
 
-    public static class InteractiveQuery5 extends TygrysekListOperationHandler<LdbcQuery5, LdbcQuery5Result> {
+    public static class InteractiveQuery5 extends TigerGraphListOperationHandler<LdbcQuery5, LdbcQuery5Result> {
 
         @Override
         public String getQueryName() {
@@ -202,7 +202,7 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
     }
 
-    public static class InteractiveQuery6 extends TygrysekListOperationHandler<LdbcQuery6, LdbcQuery6Result> {
+    public static class InteractiveQuery6 extends TigerGraphListOperationHandler<LdbcQuery6, LdbcQuery6Result> {
         @Override
         public String getQueryName() {
             return "interactiveComplex6";
@@ -226,7 +226,7 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
     }
 
-    public static class InteractiveQuery7 extends TygrysekListOperationHandler<LdbcQuery7, LdbcQuery7Result> {
+    public static class InteractiveQuery7 extends TigerGraphListOperationHandler<LdbcQuery7, LdbcQuery7Result> {
 
         @Override
         public String getQueryName() {
@@ -255,7 +255,7 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
     }
 
-    public static class InteractiveQuery8 extends TygrysekListOperationHandler<LdbcQuery8, LdbcQuery8Result> {
+    public static class InteractiveQuery8 extends TigerGraphListOperationHandler<LdbcQuery8, LdbcQuery8Result> {
 
         @Override
         public String getQueryName() {
@@ -282,7 +282,7 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
     }
 
-    public static class InteractiveQuery9 extends TygrysekListOperationHandler<LdbcQuery9, LdbcQuery9Result> {
+    public static class InteractiveQuery9 extends TigerGraphListOperationHandler<LdbcQuery9, LdbcQuery9Result> {
 
         @Override
         public String getQueryName() {
@@ -313,7 +313,7 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
     }
 
-    public static class InteractiveQuery10 extends TygrysekListOperationHandler<LdbcQuery10, LdbcQuery10Result> {
+    public static class InteractiveQuery10 extends TigerGraphListOperationHandler<LdbcQuery10, LdbcQuery10Result> {
 
         @Override
         public String getQueryName() {
@@ -339,7 +339,7 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
     }
 
-    public static class InteractiveQuery11 extends TygrysekListOperationHandler<LdbcQuery11, LdbcQuery11Result> {
+    public static class InteractiveQuery11 extends TigerGraphListOperationHandler<LdbcQuery11, LdbcQuery11Result> {
 
         @Override
         public String getQueryName() {
@@ -364,7 +364,7 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
     }
 
-    public static class InteractiveQuery12 extends TygrysekListOperationHandler<LdbcQuery12, LdbcQuery12Result> {
+    public static class InteractiveQuery12 extends TigerGraphListOperationHandler<LdbcQuery12, LdbcQuery12Result> {
 
         @Override
         public String getQueryName() {
@@ -402,7 +402,7 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
 
     // Interactive short reads
 
-    public static class InteractiveQuery13 extends TygrysekSingletonOperationHandler<LdbcQuery13, LdbcQuery13Result> {
+    public static class InteractiveQuery13 extends TigerGraphSingletonOperationHandler<LdbcQuery13, LdbcQuery13Result> {
         @Override
         public String getQueryName() {
             return "interactiveComplex13";
@@ -415,7 +415,7 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
 
         @Override
-        public String getQueryString(TygrysekDbConnectionState state, LdbcQuery13 operation) {
+        public String getQueryString(TigerGraphDbConnectionState state, LdbcQuery13 operation) {
             return state.getQueryStore().getQuery13(operation);
         }
 
@@ -426,7 +426,7 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
 
     }
 
-    public static class InteractiveQuery14 extends TygrysekListOperationHandler<LdbcQuery14, LdbcQuery14Result> {
+    public static class InteractiveQuery14 extends TigerGraphListOperationHandler<LdbcQuery14, LdbcQuery14Result> {
 
         @Override
         public String getQueryName() {
@@ -458,7 +458,7 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
 
     }
 
-    public static class ShortQuery1PersonProfile extends TygrysekSingletonOperationHandler<LdbcShortQuery1PersonProfile, LdbcShortQuery1PersonProfileResult> {
+    public static class ShortQuery1PersonProfile extends TigerGraphSingletonOperationHandler<LdbcShortQuery1PersonProfile, LdbcShortQuery1PersonProfileResult> {
 
         @Override
         public String getQueryName() {
@@ -494,7 +494,7 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
 
     }
 
-    public static class ShortQuery2PersonPosts extends TygrysekListOperationHandler<LdbcShortQuery2PersonPosts, LdbcShortQuery2PersonPostsResult> {
+    public static class ShortQuery2PersonPosts extends TigerGraphListOperationHandler<LdbcShortQuery2PersonPosts, LdbcShortQuery2PersonPostsResult> {
 
         @Override
         public String getQueryName() {
@@ -525,7 +525,7 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
     }
 
-    public static class ShortQuery3PersonFriends extends TygrysekListOperationHandler<LdbcShortQuery3PersonFriends, LdbcShortQuery3PersonFriendsResult> {
+    public static class ShortQuery3PersonFriends extends TigerGraphListOperationHandler<LdbcShortQuery3PersonFriends, LdbcShortQuery3PersonFriendsResult> {
 
         @Override
         public String getQueryName() {
@@ -552,7 +552,7 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
     }
 
-    public static class ShortQuery4MessageContent extends TygrysekSingletonOperationHandler<LdbcShortQuery4MessageContent, LdbcShortQuery4MessageContentResult> {
+    public static class ShortQuery4MessageContent extends TigerGraphSingletonOperationHandler<LdbcShortQuery4MessageContent, LdbcShortQuery4MessageContentResult> {
         @Override
 
         public String getQueryName() {
@@ -579,7 +579,7 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
     }
 
-    public static class ShortQuery5MessageCreator extends TygrysekSingletonOperationHandler<LdbcShortQuery5MessageCreator, LdbcShortQuery5MessageCreatorResult> {
+    public static class ShortQuery5MessageCreator extends TigerGraphSingletonOperationHandler<LdbcShortQuery5MessageCreator, LdbcShortQuery5MessageCreatorResult> {
 
         @Override
         public String getQueryName() {
@@ -610,7 +610,7 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
 
     // Interactive inserts
 
-    public static class ShortQuery6MessageForum extends TygrysekSingletonOperationHandler<LdbcShortQuery6MessageForum, LdbcShortQuery6MessageForumResult> {
+    public static class ShortQuery6MessageForum extends TigerGraphSingletonOperationHandler<LdbcShortQuery6MessageForum, LdbcShortQuery6MessageForumResult> {
 
         @Override
         public String getQueryName() {
@@ -639,7 +639,7 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
     }
 
-    public static class ShortQuery7MessageReplies extends TygrysekListOperationHandler<LdbcShortQuery7MessageReplies, LdbcShortQuery7MessageRepliesResult> {
+    public static class ShortQuery7MessageReplies extends TigerGraphListOperationHandler<LdbcShortQuery7MessageReplies, LdbcShortQuery7MessageRepliesResult> {
 
         @Override
         public String getQueryName() {
@@ -671,14 +671,14 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
     }
 
-    public static class Update1AddPerson extends TygrysekUpdateOperationHandler<LdbcUpdate1AddPerson> {
+    public static class Update1AddPerson extends TigerGraphUpdateOperationHandler<LdbcUpdate1AddPerson> {
         @Override
         public String getQueryName() {
             return "interactiveInsert1";
         }
 
         @Override
-        public String getQueryString(TygrysekDbConnectionState state, LdbcUpdate1AddPerson operation) {
+        public String getQueryString(TigerGraphDbConnectionState state, LdbcUpdate1AddPerson operation) {
             return state.getQueryStore().getUpdate1Single(operation);
         }
 
@@ -711,14 +711,14 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
     }
 
-    public static class Update2AddPostLike extends TygrysekUpdateOperationHandler<LdbcUpdate2AddPostLike> {
+    public static class Update2AddPostLike extends TigerGraphUpdateOperationHandler<LdbcUpdate2AddPostLike> {
         @Override
         public String getQueryName() {
             return "interactiveInsert2";
         }
 
         @Override
-        public String getQueryString(TygrysekDbConnectionState state, LdbcUpdate2AddPostLike operation) {
+        public String getQueryString(TigerGraphDbConnectionState state, LdbcUpdate2AddPostLike operation) {
             return state.getQueryStore().getUpdate2(operation);
         }
 
@@ -734,14 +734,14 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
     }
 
-    public static class Update3AddCommentLike extends TygrysekUpdateOperationHandler<LdbcUpdate3AddCommentLike> {
+    public static class Update3AddCommentLike extends TigerGraphUpdateOperationHandler<LdbcUpdate3AddCommentLike> {
         @Override
         public String getQueryName() {
             return "interactiveInsert3";
         }
 
         @Override
-        public String getQueryString(TygrysekDbConnectionState state, LdbcUpdate3AddCommentLike operation) {
+        public String getQueryString(TigerGraphDbConnectionState state, LdbcUpdate3AddCommentLike operation) {
             return state.getQueryStore().getUpdate3(operation);
         }
 
@@ -756,14 +756,14 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
     }
 
-    public static class Update4AddForum extends TygrysekUpdateOperationHandler<LdbcUpdate4AddForum> {
+    public static class Update4AddForum extends TigerGraphUpdateOperationHandler<LdbcUpdate4AddForum> {
         @Override
         public String getQueryName() {
             return "interactiveInsert4";
         }
 
         @Override
-        public String getQueryString(TygrysekDbConnectionState state, LdbcUpdate4AddForum operation) {
+        public String getQueryString(TigerGraphDbConnectionState state, LdbcUpdate4AddForum operation) {
             return state.getQueryStore().getUpdate4Single(operation);
         }
 
@@ -780,14 +780,14 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
     }
 
-    public static class Update5AddForumMembership extends TygrysekUpdateOperationHandler<LdbcUpdate5AddForumMembership> {
+    public static class Update5AddForumMembership extends TigerGraphUpdateOperationHandler<LdbcUpdate5AddForumMembership> {
         @Override
         public String getQueryName() {
             return "interactiveInsert5";
         }
 
         @Override
-        public String getQueryString(TygrysekDbConnectionState state, LdbcUpdate5AddForumMembership operation) {
+        public String getQueryString(TigerGraphDbConnectionState state, LdbcUpdate5AddForumMembership operation) {
             return state.getQueryStore().getUpdate5(operation);
         }
 
@@ -802,14 +802,14 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
     }
 
-    public static class Update6AddPost extends TygrysekUpdateOperationHandler<LdbcUpdate6AddPost> {
+    public static class Update6AddPost extends TigerGraphUpdateOperationHandler<LdbcUpdate6AddPost> {
         @Override
         public String getQueryName() {
             return "interactiveInsert6";
         }
 
         @Override
-        public String getQueryString(TygrysekDbConnectionState state, LdbcUpdate6AddPost operation) {
+        public String getQueryString(TigerGraphDbConnectionState state, LdbcUpdate6AddPost operation) {
             return state.getQueryStore().getUpdate6Single(operation);
         }
 
@@ -835,14 +835,14 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
     }
 
-    public static class Update7AddComment extends TygrysekUpdateOperationHandler<LdbcUpdate7AddComment> {
+    public static class Update7AddComment extends TigerGraphUpdateOperationHandler<LdbcUpdate7AddComment> {
         @Override
         public String getQueryName() {
             return "interactiveInsert7";
         }
 
         @Override
-        public String getQueryString(TygrysekDbConnectionState state, LdbcUpdate7AddComment operation) {
+        public String getQueryString(TigerGraphDbConnectionState state, LdbcUpdate7AddComment operation) {
             return state.getQueryStore().getUpdate7Single(operation);
         }
 
@@ -867,14 +867,14 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
         }
     }
 
-    public static class Update8AddFriendship extends TygrysekUpdateOperationHandler<LdbcUpdate8AddFriendship> {
+    public static class Update8AddFriendship extends TigerGraphUpdateOperationHandler<LdbcUpdate8AddFriendship> {
         @Override
         public String getQueryName() {
             return "interactiveInsert8";
         }
 
         @Override
-        public String getQueryString(TygrysekDbConnectionState state, LdbcUpdate8AddFriendship operation) {
+        public String getQueryString(TigerGraphDbConnectionState state, LdbcUpdate8AddFriendship operation) {
             return state.getQueryStore().getUpdate8(operation);
         }
 
