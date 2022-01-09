@@ -1,4 +1,4 @@
-package com.ldbc.impls.workloads.ldbc.snb.tygrysek;
+package com.ldbc.impls.workloads.ldbc.snb.tigergraph;
 
 import com.google.common.collect.ImmutableList;
 import com.ldbc.driver.workloads.ldbc.snb.interactive.LdbcQuery14;
@@ -6,7 +6,7 @@ import com.ldbc.driver.workloads.ldbc.snb.interactive.LdbcShortQuery6MessageForu
 import com.ldbc.driver.workloads.ldbc.snb.interactive.LdbcShortQuery7MessageReplies;
 import com.ldbc.driver.workloads.ldbc.snb.interactive.LdbcUpdate1AddPerson;
 import com.ldbc.impls.workloads.ldbc.snb.interactive.InteractiveTest;
-import com.ldbc.impls.workloads.ldbc.snb.tygrysek.interactive.TigerGraphInteractiveDb;
+import com.ldbc.impls.workloads.ldbc.snb.tigergraph.interactive.TigerGraphInteractiveDb;
 import org.junit.Test;
 
 import java.util.Date;

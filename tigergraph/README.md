@@ -1,6 +1,6 @@
-# LDBC SNB Tygrysek implementation
+# LDBC SNB TigerGraph implementation
 
-This directory contains the [Tygrysek/GSQL](<<TODO>>) implementation of the Interactive workload of the [LDBC SNB benchmark](https://github.com/ldbc/ldbc_snb_docs).
+This directory contains the [TigerGraph/GSQL](<<TODO>>) implementation of the Interactive workload of the [LDBC SNB benchmark](https://github.com/ldbc/ldbc_snb_docs).
 
 
 

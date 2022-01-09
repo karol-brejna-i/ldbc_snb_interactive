@@ -1,4 +1,4 @@
-package com.ldbc.impls.workloads.ldbc.snb.tygrysek;
+package com.ldbc.impls.workloads.ldbc.snb.tigergraph;
 
 import com.ldbc.impls.workloads.ldbc.snb.QueryStore;
 import com.ldbc.driver.DbException;

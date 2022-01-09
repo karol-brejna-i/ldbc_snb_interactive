@@ -1,4 +1,4 @@
-package com.ldbc.impls.workloads.ldbc.snb.tygrysek.connector;
+package com.ldbc.impls.workloads.ldbc.snb.tigergraph.connector;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.internal.LinkedTreeMap;

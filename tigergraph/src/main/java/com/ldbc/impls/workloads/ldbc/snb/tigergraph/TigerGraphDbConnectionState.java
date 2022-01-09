@@ -1,4 +1,4 @@
-package com.ldbc.impls.workloads.ldbc.snb.tygrysek;
+package com.ldbc.impls.workloads.ldbc.snb.tigergraph;
 
 import com.ldbc.impls.workloads.ldbc.snb.BaseDbConnectionState;
 import io.github.karol_brejna_i.tigergraph.restppclient.api.QueryApi;

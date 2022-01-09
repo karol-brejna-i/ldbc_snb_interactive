@@ -1,8 +1,8 @@
-package com.ldbc.impls.workloads.ldbc.snb.tygrysek;
+package com.ldbc.impls.workloads.ldbc.snb.tigergraph;
 
 import com.ldbc.driver.workloads.ldbc.snb.interactive.*;
 import com.ldbc.impls.workloads.ldbc.snb.interactive.InteractiveTest;
-import com.ldbc.impls.workloads.ldbc.snb.tygrysek.interactive.TigerGraphInteractiveDb;
+import com.ldbc.impls.workloads.ldbc.snb.tigergraph.interactive.TigerGraphInteractiveDb;
 import org.junit.Test;
 
 import java.text.DateFormat;

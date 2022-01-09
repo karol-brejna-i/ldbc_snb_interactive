@@ -1,4 +1,4 @@
-package com.ldbc.impls.workloads.ldbc.snb.tygrysek.connector;
+package com.ldbc.impls.workloads.ldbc.snb.tigergraph.connector;
 
 import com.ldbc.driver.workloads.ldbc.snb.interactive.LdbcUpdate1AddPerson;
 

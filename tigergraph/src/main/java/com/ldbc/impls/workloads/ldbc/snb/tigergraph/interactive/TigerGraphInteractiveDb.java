@@ -1,9 +1,9 @@
-package com.ldbc.impls.workloads.ldbc.snb.tygrysek.interactive;
+package com.ldbc.impls.workloads.ldbc.snb.tigergraph.interactive;
 
 import com.ldbc.driver.DbException;
 import com.ldbc.driver.control.LoggingService;
 import com.ldbc.driver.workloads.ldbc.snb.interactive.*;
-import com.ldbc.impls.workloads.ldbc.snb.tygrysek.TigerGraphDb;
+import com.ldbc.impls.workloads.ldbc.snb.tigergraph.TigerGraphDb;
 
 import java.util.Map;
 

@@ -1,4 +1,4 @@
-package com.ldbc.impls.workloads.ldbc.snb.tygrysek;
+package com.ldbc.impls.workloads.ldbc.snb.tigergraph;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.gson.internal.LinkedTreeMap;
@@ -7,11 +7,11 @@ import com.ldbc.driver.Operation;
 import com.ldbc.driver.control.LoggingService;
 import com.ldbc.driver.workloads.ldbc.snb.interactive.*;
 import com.ldbc.impls.workloads.ldbc.snb.db.BaseDb;
-import com.ldbc.impls.workloads.ldbc.snb.tygrysek.connector.ResultConverter;
-import com.ldbc.impls.workloads.ldbc.snb.tygrysek.connector.VertexResult;
-import com.ldbc.impls.workloads.ldbc.snb.tygrysek.operationhandlers.TigerGraphListOperationHandler;
-import com.ldbc.impls.workloads.ldbc.snb.tygrysek.operationhandlers.TigerGraphSingletonOperationHandler;
-import com.ldbc.impls.workloads.ldbc.snb.tygrysek.operationhandlers.TigerGraphUpdateOperationHandler;
+import com.ldbc.impls.workloads.ldbc.snb.tigergraph.connector.ResultConverter;
+import com.ldbc.impls.workloads.ldbc.snb.tigergraph.connector.VertexResult;
+import com.ldbc.impls.workloads.ldbc.snb.tigergraph.operationhandlers.TigerGraphListOperationHandler;
+import com.ldbc.impls.workloads.ldbc.snb.tigergraph.operationhandlers.TigerGraphSingletonOperationHandler;
+import com.ldbc.impls.workloads.ldbc.snb.tigergraph.operationhandlers.TigerGraphUpdateOperationHandler;
 
 import java.text.DateFormat;
 import java.text.ParseException;
