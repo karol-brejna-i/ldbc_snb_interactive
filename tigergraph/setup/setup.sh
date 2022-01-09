@@ -35,6 +35,13 @@ gsql --graph LDBC_SNB queries/interactiveComplex12.gsql
 gsql --graph LDBC_SNB queries/interactiveComplex13.gsql
 gsql --graph LDBC_SNB queries/interactiveComplex14.gsql
 gsql --graph LDBC_SNB queries/interactiveInsert1.gsql
+gsql --graph LDBC_SNB queries/interactiveInsert2.gsql
+gsql --graph LDBC_SNB queries/interactiveInsert3.gsql
+gsql --graph LDBC_SNB queries/interactiveInsert4.gsql
+gsql --graph LDBC_SNB queries/interactiveInsert5.gsql
+gsql --graph LDBC_SNB queries/interactiveInsert6.gsql
+gsql --graph LDBC_SNB queries/interactiveInsert7.gsql
+gsql --graph LDBC_SNB queries/interactiveInsert8.gsql
 
 gsql --graph LDBC_SNB "INSTALL QUERY interactiveShort1"
 gsql --graph LDBC_SNB "INSTALL QUERY interactiveShort2"
@@ -58,3 +65,10 @@ gsql --graph LDBC_SNB "INSTALL QUERY interactiveComplex12"
 gsql --graph LDBC_SNB "INSTALL QUERY interactiveComplex13"
 gsql --graph LDBC_SNB "INSTALL QUERY interactiveComplex14"
 gsql --graph LDBC_SNB "INSTALL QUERY interactiveInsert1"
+gsql --graph LDBC_SNB "INSTALL QUERY interactiveInsert2"
+gsql --graph LDBC_SNB "INSTALL QUERY interactiveInsert3"
+gsql --graph LDBC_SNB "INSTALL QUERY interactiveInsert4"
+gsql --graph LDBC_SNB "INSTALL QUERY interactiveInsert5"
+gsql --graph LDBC_SNB "INSTALL QUERY interactiveInsert6"
+gsql --graph LDBC_SNB "INSTALL QUERY interactiveInsert7"
+gsql --graph LDBC_SNB "INSTALL QUERY interactiveInsert8"
