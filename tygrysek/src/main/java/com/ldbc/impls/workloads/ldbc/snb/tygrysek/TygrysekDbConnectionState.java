@@ -19,7 +19,7 @@ public class TygrysekDbConnectionState extends BaseDbConnectionState<TygrysekQue
     public TygrysekDbConnectionState(Map<String, String> properties, TygrysekQueryStore store) {
         super(properties, store);
         this.endpoint = properties.get("endpoint");
-        this.graphName = properties.get("name");
+        this.graphName = properties.get("databaseName");
 
         ApiClient defaultApiClient = Configuration.getDefaultApiClient();
         defaultApiClient.setBasePath(this.endpoint);

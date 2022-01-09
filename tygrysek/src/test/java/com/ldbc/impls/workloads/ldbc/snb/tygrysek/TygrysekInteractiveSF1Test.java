@@ -1,6 +1,7 @@
 package com.ldbc.impls.workloads.ldbc.snb.tygrysek;
 
 import com.google.common.collect.ImmutableList;
+import com.ldbc.driver.workloads.ldbc.snb.interactive.LdbcQuery14;
 import com.ldbc.driver.workloads.ldbc.snb.interactive.LdbcShortQuery6MessageForum;
 import com.ldbc.driver.workloads.ldbc.snb.interactive.LdbcShortQuery7MessageReplies;
 import com.ldbc.driver.workloads.ldbc.snb.interactive.LdbcUpdate1AddPerson;
@@ -14,7 +15,7 @@ import java.util.Map;
 
 public class TygrysekInteractiveSF1Test extends InteractiveTest {
 
-    String endpoint = "http://172.31.56.14:9000";
+    String endpoint = "http://172.20.66.147:9000";
 //    String endpoint = "http://192.168.0.105:9000";
     String databaseName = "LDBC_SNB";
     String queryDir = "queries";
@@ -87,6 +88,12 @@ public class TygrysekInteractiveSF1Test extends InteractiveTest {
     @Test
     public void testShortQuery7() throws Exception {
         run(db, new LdbcShortQuery7MessageReplies(1786706436881L));
+    }
+
+    @Test
+    public void testQuery14() throws Exception
+    {
+        run( db, new LdbcQuery14( 32985348833679L, 2199023256862L ) );
     }
 
 }

@@ -443,7 +443,14 @@ public abstract class TygrysekDb extends BaseDb<TygrysekQueryStore> {
 
         @Override
         public LdbcQuery14Result toResult(LinkedTreeMap<String, Object> record) {
-            int pathWeight = Math.toIntExact((Long) record.get("pathWeight"));
+//            double pathWeight = (Double) record.get("pathWeight");
+            Object pathWeightRaw = record.get("pathWeight");
+            Double pathWeight;
+            if (pathWeightRaw instanceof Double) {
+                pathWeight = (Double) pathWeightRaw;
+            } else {
+                pathWeight = ((Long) pathWeightRaw).doubleValue();
+            }
             Iterable personIdsInPath = (List) record.get("personIdsInPath");
 
             return new LdbcQuery14Result(personIdsInPath, pathWeight);
