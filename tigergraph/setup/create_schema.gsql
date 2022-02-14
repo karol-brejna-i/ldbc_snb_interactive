@@ -3,12 +3,6 @@
 # Define the schema and create the graph.
 #
 
-
-# create vertex: attributes is based on metadata of the data files
-# Compared to LDBC doc:
-#   Forum vertex does not have type.
-#   For Comment, Post, Forum, Person, the order of attributes is different.
-
 ## Message
 CREATE VERTEX Comment (PRIMARY_ID id UINT, creationDate DATETIME, locationIP STRING, browserUsed STRING, content STRING, length UINT) WITH primary_id_as_attribute="TRUE"
 CREATE VERTEX Post (PRIMARY_ID id UINT, imageFile STRING, creationDate DATETIME, locationIP STRING, browserUsed STRING, language STRING, content STRING, length UINT) WITH primary_id_as_attribute="TRUE"

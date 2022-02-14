@@ -52,10 +52,7 @@ public abstract class TigerGraphSingletonOperationHandler<TOperation extends Ope
                 resultReporter.report(0, null, operation);
             }
         } else {
-//            throw new DbException("Cannot serialize null result.");
-//            // TODO XXX with the following construct, we get `Caused by: java.lang.NullPointerException
-//            //	at com.ldbc.driver.workloads.ldbc.snb.interactive.LdbcQuery13.serializeResult(LdbcQuery13.java:111)`
-//            //resultReporter.report(0, null, operation);
+            throw new DbException("Cannot serialize null result.");
         }
 
     }

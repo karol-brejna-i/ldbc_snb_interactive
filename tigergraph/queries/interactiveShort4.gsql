@@ -1,4 +1,4 @@
-CREATE OR REPLACE DISTRIBUTED QUERY interactiveShort4(STRING messageId) SYNTAX v2 {
+CREATE OR REPLACE QUERY interactiveShort4(STRING messageId) SYNTAX v2 {
   SetAccum<STRING> @@seed;
   SumAccum<STRING> @messageContent;
 
@@ -22,9 +22,4 @@ CREATE OR REPLACE DISTRIBUTED QUERY interactiveShort4(STRING messageId) SYNTAX v
         vPost.@messageContent AS messageContent] AS result;
   END;
 }
-
-
-//RUN QUERY is4(1168231255724) -- comment
-//RUN QUERY is4(137439104673)  -- message
-//RUN QUERY is4(343597583247)  -- message with imageFile
 

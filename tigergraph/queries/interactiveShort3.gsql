@@ -1,4 +1,4 @@
-CREATE OR REPLACE DISTRIBUTED QUERY interactiveShort3(VERTEX<Person> personId) SYNTAX v2 {
+CREATE OR REPLACE QUERY interactiveShort3(VERTEX<Person> personId) SYNTAX v2 {
   SumAccum<INT> @creationDate;
 
   S = { personId };
@@ -11,5 +11,3 @@ CREATE OR REPLACE DISTRIBUTED QUERY interactiveShort3(VERTEX<Person> personId) S
   PRINT P[
       P.id AS personId, P.firstName AS firstName, P.lastName AS lastName, epoch_to_datetime(P.@creationDate) AS friendshipCreationDate] as result;
 }
-
-//RUN QUERY is2(19791209302561)

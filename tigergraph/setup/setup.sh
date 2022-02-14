@@ -57,32 +57,4 @@ gsql --graph LDBC_SNB $QUERY_PATH/interactiveInsert6.gsql
 gsql --graph LDBC_SNB $QUERY_PATH/interactiveInsert7.gsql
 gsql --graph LDBC_SNB $QUERY_PATH/interactiveInsert8.gsql
 
-gsql --graph LDBC_SNB INSTALL QUERY interactiveShort1
-gsql --graph LDBC_SNB INSTALL QUERY interactiveShort2
-gsql --graph LDBC_SNB INSTALL QUERY interactiveShort3
-gsql --graph LDBC_SNB INSTALL QUERY interactiveShort4
-gsql --graph LDBC_SNB INSTALL QUERY interactiveShort5
-gsql --graph LDBC_SNB INSTALL QUERY interactiveShort6
-gsql --graph LDBC_SNB INSTALL QUERY interactiveShort7
-gsql --graph LDBC_SNB INSTALL QUERY interactiveComplex1
-gsql --graph LDBC_SNB INSTALL QUERY interactiveComplex2
-gsql --graph LDBC_SNB INSTALL QUERY interactiveComplex3
-gsql --graph LDBC_SNB INSTALL QUERY interactiveComplex4
-gsql --graph LDBC_SNB INSTALL QUERY interactiveComplex5
-gsql --graph LDBC_SNB INSTALL QUERY interactiveComplex6
-gsql --graph LDBC_SNB INSTALL QUERY interactiveComplex7
-gsql --graph LDBC_SNB INSTALL QUERY interactiveComplex8
-gsql --graph LDBC_SNB INSTALL QUERY interactiveComplex9
-gsql --graph LDBC_SNB INSTALL QUERY interactiveComplex10
-gsql --graph LDBC_SNB INSTALL QUERY interactiveComplex11
-gsql --graph LDBC_SNB INSTALL QUERY interactiveComplex12
-gsql --graph LDBC_SNB INSTALL QUERY interactiveComplex13
-gsql --graph LDBC_SNB INSTALL QUERY interactiveComplex14
-gsql --graph LDBC_SNB INSTALL QUERY interactiveInsert1
-gsql --graph LDBC_SNB INSTALL QUERY interactiveInsert2
-gsql --graph LDBC_SNB INSTALL QUERY interactiveInsert3
-gsql --graph LDBC_SNB INSTALL QUERY interactiveInsert4
-gsql --graph LDBC_SNB INSTALL QUERY interactiveInsert5
-gsql --graph LDBC_SNB INSTALL QUERY interactiveInsert6
-gsql --graph LDBC_SNB INSTALL QUERY interactiveInsert7
-gsql --graph LDBC_SNB INSTALL QUERY interactiveInsert8
+gsql --graph LDBC_SNB 'INSTALL QUERY *'

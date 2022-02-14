@@ -1,4 +1,4 @@
-CREATE OR REPLACE DISTRIBUTED QUERY interactiveShort5(STRING messageId) SYNTAX v2 {
+CREATE OR REPLACE QUERY interactiveShort5(STRING messageId) SYNTAX v2 {
   SetAccum<STRING> @@seed;
 
   // from the docs:
@@ -19,6 +19,3 @@ CREATE OR REPLACE DISTRIBUTED QUERY interactiveShort5(STRING messageId) SYNTAX v
       P.lastName AS lastName] as result;
 }
 
-//RUN QUERY is5(1168231255724) -- comment
-//RUN QUERY is5(137439104673)  -- message
-//RUN QUERY is5(343597583247)  -- message with imageFile
